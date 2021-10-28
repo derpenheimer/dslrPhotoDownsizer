@@ -17,9 +17,12 @@ workingDir = args.directory if args.directory[-1:]=="\\" else args.directory+"\\
 reductionAmt = 1-((int(args.reduction) if int(args.reduction)>10 and int(args.reduction)<90 else 50)*0.01)
 
 for fileName in os.listdir(workingDir):
-    if fileName[-4:]==".JPG" and fileName[-7:]!="_LOW.JPG":
-        fullLocation = workingDir+fileName
-        oldImg = Image.open(fullLocation)
-        newImg = oldImg.resize((int(oldImg.size[0]*reductionAmt), int(oldImg.size[1]*reductionAmt)), Image.ANTIALIAS)
-        newImg.save(fullLocation.replace(".JPG","_LOW.JPG"), optimize=True, quality=95)
-        print(str(fullLocation.replace(".JPG","_LOW.JPG")))
+    try:
+        if fileName[-4:]==".JPG" and fileName[-7:]!="_LOW.JPG":
+            fullLocation = workingDir+fileName
+            oldImg = Image.open(fullLocation)
+            newImg = oldImg.resize((int(oldImg.size[0]*reductionAmt), int(oldImg.size[1]*reductionAmt)), Image.ANTIALIAS)
+            newImg.save(fullLocation.replace(".JPG","_LOW.JPG"), optimize=True, quality=95)
+            print(str(fullLocation.replace(".JPG","_LOW.JPG")))
+    except:
+        pass
