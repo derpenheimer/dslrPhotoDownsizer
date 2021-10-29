@@ -18,7 +18,7 @@ reductionAmt = 1-((int(args.reduction) if int(args.reduction)>10 and int(args.re
 
 for fileName in os.listdir(workingDir):
     try:
-        if fileName[-4:]==".JPG" and fileName[-7:]!="_LOW.JPG":
+        if fileName[-4:]==".JPG" and fileName[-8:]!="_LOW.JPG":
             fullLocation = workingDir+fileName
             oldImg = Image.open(fullLocation)
             newImg = oldImg.resize((int(oldImg.size[0]*reductionAmt), int(oldImg.size[1]*reductionAmt)), Image.ANTIALIAS)
